@@ -29,14 +29,67 @@ public class GrahamScan {
         return reference;
     }
     
+    private double length(point a, point b) {
+   		return Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
+    }
+    
+    private double cross(point a, point b, point reference) {
+   		double rax = a.x - reference.x;
+   		double ray = a.y - reference.y;
+   		//vector ab
+   		double abx = b.x - reference.x;
+   		double aby = b.y - reference.y;
+   		
+   		double z = rax * aby - ray * abx; //cross-product analogy in 2d
+   		
+   		return z;
+    }
+    
+    private int comparatorPolar(point a, point b, point reference) {
+   		//vector ra
+   		double z = cross(a, b, reference);
+   		
+   		if(z != 0) return (z > 0)? 1 : -1;
+   		else return Double.compare(length(a, reference), length(b, reference)); 
+   		//the vectors are colinear then order them by magnitude.
+    }
+    
+    
+    private void computeCH() {
+   		ch.add(points.remove(0));
+   		ch.add(points.remove(0));
+   		
+   		while(points.size() > 0) {
+   			  point b = points.remove(0);
+   			  point a = ch.peek();
+   			  point r = ch.get(ch.size() - 2);
+   			  
+   			  while(comparatorPolar(a, b, r) > 0 || 
+   							(cross(a, b, r) == 0 && length(a, r) < length(b, r)) ) {
+   					 ch.pop();
+   					 
+   					 if(ch.size() < 2)
+   							break;
+   					 
+   					 a = ch.peek();
+   					 r = ch.get(ch.size() - 2);
+   			  }
+   			  ch.add(b);
+   		}
+    }
+    
     //assuming the input points are all distinct.
-    public GrahamScan (ArrayList<point> inputPoints) {
-        if(inputPoints.size == 0)
+    @SuppressWarnings("unchecked")
+    public GrahamScan (ArrayList<point> inputPoints) throws Exception {
+        if(inputPoints.size() == 0)
             throw new Exception("empty input");
         
         point reference = findReference(inputPoints);
         
-        Collections.sort(inputPoints, )
+        Collections.sort(inputPoints, (a, b) -> comparatorPolar(a, b, reference));
+        points = (ArrayList<point>)inputPoints.clone(); //deep copy of sorted input points;
+        computeCH();
+        points = (ArrayList<point>)inputPoints.clone();
     }
-
+    
 }
