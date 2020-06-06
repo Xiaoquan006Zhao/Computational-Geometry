@@ -9,12 +9,12 @@ import java.util.*;
  */
 
 public class GrahamScan {
-    private arrayList<point> points = new arrayList<point>(); //should be sorted.
-    private stack<point> ch = new stack<point>();
+    private ArrayList<point> points = new ArrayList<point>(); //should be sorted.
+    private Stack<point> ch = new Stack<point>();
     
     //find the reference point that is used as the pivot for calculating polar angle. 
     //the lowest point (smallest y-coord), if ties, using the point with smallest x-coord.
-    private point findReference (arrayList<point> inputPoints){
+    private point findReference (ArrayList<point> inputPoints){
         point reference = inputPoints.get(0);
         point cur = null;
         
@@ -30,7 +30,7 @@ public class GrahamScan {
     }
     
     //assuming the input points are all distinct.
-    public GrahamScan (arrayList<point> inputPoints) {
+    public GrahamScan (ArrayList<point> inputPoints) {
         if(inputPoints.size == 0)
             throw new Exception("empty input");
         
