@@ -1,5 +1,3 @@
-# Computational-Geometry
-Computer Science course - Spring 2020
-
-This repository contains projects related to the field of computational Gemoetry.
-The projects: Convex hall(2D), Trapezoidal map, Voronoi Diagram, Dural arrangement, DCEL, Kd-tree, Range-tree ...
+# Convex hull
+Computating convex hull in 2d space, implementing both Graham Scan and Jarvis's March. 
+More details please go to the descriptions of each algorithm.
