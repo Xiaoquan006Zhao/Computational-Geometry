@@ -12,10 +12,10 @@ public class JavisMarch {
 	  private ArrayList<point> points = new ArrayList<point>(); //should be sorted.
 	  private Stack<point> ch = new Stack<point>();
 	  
-	//find the reference point that is used as the pivot for calculating polar angle. 
-	    //the lowest point (smallest y-coord), if ties, using the point with smallest x-coord.
-	    private point findReference (ArrayList<point> inputPoints){
-	        point reference = inputPoints.get(0);
+	  //find the reference point that is used as the pivot for calculating polar angle. 
+	  //the lowest point (smallest y-coord), if ties, using the point with smallest x-coord.
+	  private point findReference (ArrayList<point> inputPoints){
+		point reference = inputPoints.get(0);
 	        point cur = null;
 	        
 	        for(int i = 1; i < inputPoints.size(); i++){
