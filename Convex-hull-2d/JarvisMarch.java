@@ -5,6 +5,7 @@ import java.util.*;
  * polar angle wrt. to a selected point. Then exclude the point and continue the sorting and selection.
  *
  * This algorithm takes O (nh). The run time is output sensitive and h is the number of vertices in the convex hull.  
+ * output represent by vertices of the convex hull in clockwise order.
  */
 
 public class JavisMarch {
