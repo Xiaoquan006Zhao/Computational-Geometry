@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Computing convex hull in 2d space by implementing Javis's March. The essence of this algorithm is first sort the input by 
- * polar angle wrt. to a selected point. Then exclude the point and continue the sorting and selection.
+ * polar angle wrt. to a selected point. Then update the reference and continue the sorting and selection.
  *
  * This algorithm takes O (nh). The run time is output sensitive and h is the number of vertices in the convex hull.  
  * output represent by vertices of the convex hull in clockwise order.
