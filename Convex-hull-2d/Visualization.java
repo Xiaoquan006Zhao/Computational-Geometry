@@ -100,10 +100,10 @@ public class Visualization extends Application {
 	}
 	  
 	@Override 
-   @SuppressWarnings({ "rawtypes", "unchecked" })
-   public void start(Stage stage) { 
+  	@SuppressWarnings({ "rawtypes", "unchecked" })
+   	public void start(Stage stage) { 
 		  Group root = new Group(); 
-        ObservableList list = root.getChildren(); 
+        	  ObservableList list = root.getChildren(); 
         
 		  point start = data.get(0);
 		  
@@ -134,27 +134,27 @@ public class Visualization extends Application {
 		  line.setEndY(end.y);
 		  list.add(line);
 		  
-        Scene scene = new Scene(root, width, length); 
-        stage.setTitle("Convex hull visualization");   
-        stage.setScene(scene); 
-        stage.show(); 
+        	  Scene scene = new Scene(root, width, length); 
+        	  stage.setTitle("Convex hull visualization");   
+        	  stage.setScene(scene); 
+       	 	  stage.show(); 
      }      
    
    public static void main(String args[]) throws Exception{   
-   	 ArrayList<point> input = new ArrayList<point>();
+   	 	  ArrayList<point> input = new ArrayList<point>();
  		 
-   	 input.add(new point(0, 0));
-   	 input.add(new point(2, 2));
-   	 input.add(new point(0, 1));
-   	 input.add(new point(-2, 2));
-   	 input.add(new point(0, -1));
-   	 input.add(new point(10, 8));
-   	 input.add(new point(2, -2));
+   	 	  input.add(new point(0, 0));
+   		  input.add(new point(2, 2));
+   	 	  input.add(new point(0, 1));
+   	 	  input.add(new point(-2, 2));
+   	 	  input.add(new point(0, -1));
+   	 	  input.add(new point(10, 8));
+   	 	  input.add(new point(2, -2));
    	 
- 		 GrahamScan ex = new GrahamScan(input);
+ 		  GrahamScan ex = new GrahamScan(input);
    	  
-   	 Visualization.loadData(ex.getCH());
-   	 Visualization.loadPoints(ex.getPoints());
-   	 Visualization.launch();  
+   	 	  Visualization.loadData(ex.getCH());
+   	 	  Visualization.loadPoints(ex.getPoints());
+   	 	  Visualization.launch();  
    }         
 } 
