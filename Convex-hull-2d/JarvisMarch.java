@@ -15,18 +15,18 @@ public class JavisMarch {
 	  //find the reference point that is used as the pivot for calculating polar angle. 
 	  //the lowest point (smallest y-coord), if ties, using the point with smallest x-coord.
 	  private point findReference (ArrayList<point> inputPoints){
-		point reference = inputPoints.get(0);
-	        point cur = null;
+			point reference = inputPoints.get(0);
+	        	point cur = null;
 	        
-	        for(int i = 1; i < inputPoints.size(); i++){
-	            cur = inputPoints.get(i);
-	            if (cur.y < reference.y)
-	                reference = cur;
-	            else if (cur.y == reference.y && cur.x < reference.x)
-	                reference = cur;
-	        }
+	        	for(int i = 1; i < inputPoints.size(); i++){
+	            		cur = inputPoints.get(i);
+	            		if (cur.y < reference.y)
+	                	reference = cur;
+	            		else if (cur.y == reference.y && cur.x < reference.x)
+	                	reference = cur;
+	        	}
 	        
-	        return reference;
+	        	return reference;
 	    }
 	    
 	    private double length(point a, point b) {
@@ -57,27 +57,27 @@ public class JavisMarch {
 	    //assuming the input points are all distinct.
 	    @SuppressWarnings("unchecked")
 	    public  JavisMarch (ArrayList<point> inputPoints) throws Exception {
-	        if(inputPoints.size() == 0)
-	            throw new Exception("empty input");
+	        	if(inputPoints.size() == 0)
+	            		throw new Exception("empty input");
 	        
 	        
-	        point initial = findReference(inputPoints);
+	        	point initial = findReference(inputPoints);
 	        
-	        Collections.sort(inputPoints, (a, b) -> comparatorPolar(a, b, initial));
-	        points = (ArrayList<point>) inputPoints.clone();
-	        point holder = inputPoints.get(1);
-	        ch.add(holder);
+	        	Collections.sort(inputPoints, (a, b) -> comparatorPolar(a, b, initial));
+	        	points = (ArrayList<point>) inputPoints.clone();
+	        	point holder = inputPoints.get(1);
+	        	ch.add(holder);
 	        
-	        while (ch.lastElement() != initial) {
-	      		 point reference = holder;
-	      		 Collections.sort(inputPoints, (a, b) -> comparatorPolar(a, b, reference));
-	      		 holder = inputPoints.get(1);
-	      		 ch.add(holder);
-	        }
+	        	while (ch.lastElement() != initial) {
+	      		 	point reference = holder;
+	      		 	Collections.sort(inputPoints, (a, b) -> comparatorPolar(a, b, reference));
+	      		 	holder = inputPoints.get(1);
+	      		 	ch.add(holder);
+	        	}
 	        
 	        
-	        ch.remove(ch.size()-1);
-	        ch.add(0, initial);
-	        points = (ArrayList<point>)inputPoints.clone(); //deep copy of sorted input points; 
+	        	ch.remove(ch.size()-1);
+	        	ch.add(0, initial);
+	        	points = (ArrayList<point>)inputPoints.clone(); //deep copy of sorted input points; 
 	    }
 }
