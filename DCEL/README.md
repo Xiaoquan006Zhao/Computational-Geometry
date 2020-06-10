@@ -4,7 +4,6 @@ A type of planar subdivsion. Most of geometric objects in this repository will b
 
 * Mainly used to store geometric and topological information. 
 * Complexity is #vertices + #edges + #faces.
-* 
 
 
 # Features:
