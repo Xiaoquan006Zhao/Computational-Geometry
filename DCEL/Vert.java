@@ -3,7 +3,7 @@
  * This class is used to represent vertex in DCEL.
  */
 
-public class Vert extends Point{
+public class Vert {
       public final double x;
       public final double y;
 	  public final String name;
