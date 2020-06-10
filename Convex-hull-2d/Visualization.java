@@ -103,7 +103,7 @@ public class Visualization extends Application {
   	@SuppressWarnings({ "rawtypes", "unchecked" })
    	public void start(Stage stage) { 
 		  Group root = new Group(); 
-        	  ObservableList list = root.getChildren(); 
+          ObservableList list = root.getChildren(); 
         
 		  point start = data.get(0);
 		  
@@ -133,11 +133,11 @@ public class Visualization extends Application {
 		  line.setEndX(end.x);
 		  line.setEndY(end.y);
 		  list.add(line);
-		  
-        	  Scene scene = new Scene(root, width, length); 
-        	  stage.setTitle("Convex hull visualization");   
-        	  stage.setScene(scene); 
-       	 	  stage.show(); 
+        
+          Scene scene = new Scene(root, width, length); 
+          stage.setTitle("Convex hull visualization");   
+          stage.setScene(scene); 
+       	  stage.show(); 
      }      
    
    public static void main(String args[]) throws Exception{   
