@@ -30,11 +30,11 @@ public class Edge {
 			 return end;
 	  }
 	  
-	  public void setStart(Point start) {
+	  public void setStart(Vert start) {
 			 this.start = start;
 	  }
 	  
-	  public void setEnd(Point end) {
+	  public void setEnd(Vert end) {
 			 this.end = end;
 	  }
 	  
