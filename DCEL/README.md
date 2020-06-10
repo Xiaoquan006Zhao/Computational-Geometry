@@ -4,6 +4,7 @@ A data structures used for planar subdivsion. Most of geometric objects in this 
 
 * Mainly used to store geometric and topological information. 
 * Complexity is #vertices + #edges + #faces.
+* An example is given above.
 
 
 # Features:
