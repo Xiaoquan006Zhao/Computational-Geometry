@@ -1,6 +1,6 @@
 # DCEL (Doubly Connected Edge List)
 
-A type of planar subdivsion. Most of geometric objects in this repository will be implemented using DCEL. 
+A data structures used for planar subdivsion. Most of geometric objects in this repository will be implemented using DCEL. 
 
 * Mainly used to store geometric and topological information. 
 * Complexity is #vertices + #edges + #faces.
