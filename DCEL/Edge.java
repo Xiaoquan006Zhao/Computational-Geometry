@@ -22,11 +22,11 @@ public class Edge {
 			next = null;
 	  }
 	  
-	  public Point getStart() {
+	  public Vert getStart() {
 			 return start;
 	  }
 	  
-	  public Point getEnd() {
+	  public Vert getEnd() {
 			 return end;
 	  }
 	  
@@ -54,16 +54,12 @@ public class Edge {
 			 this.next = next;
 	  }
 	  
-	  public void setEndPoint(Point a) {
+	  public void setEndPoint(Vert a) {
 			 end = a;
 	  }
 	  
-	  public void setStartPoint(Point b) {
+	  public void setStartPoint(Vert b) {
 			 start = b;
-	  }
-  
-	  public String getName() {
-			 return name+first+","+second;
 	  }
 	  
 	  public String getFace() {
