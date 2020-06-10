@@ -3,15 +3,12 @@
  * This class is used to represent vertex in DCEL.
  */
 
-public class Vert {
-      public final double x;
-      public final double y;
+public class Vert extends point{
 	  public final String name;
 	  private Edge incidentEdge;
 	  
 	  Vert(String name, double x, double y){
-			 this.x = x;
-             this.y = y;
+			 super(x, y);
 			 this.name = name;
 			 incidentEdge = null;
 	  }

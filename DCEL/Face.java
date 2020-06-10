@@ -6,27 +6,38 @@ import java.util.ArrayList;
  */
  
 public class Face {
-    private Edge outer;
-    private ArrayList<Edge> inner = new ArrayList<Edge>();
+	  private int face;
+	  private Edge outer;
+	  private ArrayList<Edge> inner = new ArrayList<Edge>();
     
-    public Face (Edge outer, ArrayList<Edge> inner){
-        this.outer = outer;
-        this.inner = inner;
-    }
+	  public Face (int face, Edge outer, ArrayList<Edge> inner){
+			 this.face = face;
+			 this.outer = outer;
+			 this.inner = inner;
+	  }
+	  
+	  public Edge getOuter(){
+			 return outer;
+	  }
     
-    public Edge getOuter(){
-        return outer;
-    }
+	  public void setOuter(Edge outer){
+			 this.outer = outer;
+	  }
     
-    public void setOuter(Edge outer){
-        this.outer = outer;
-    }
+	  public ArrayList<Edge> getInner(){
+			 return inner;
+	  }
     
-    public ArrayList<Edge> getInner(){
-        return inner;
-    }
-    
-    public void setInner(ArrayList<Edge> inner){
-        this.inner = inner;
-    }
+	  public void setInner(ArrayList<Edge> inner){
+			 this.inner = inner;
+	  }
+	  
+	  public void setFace(int face) {
+			 this.face = face;
+	  }
+	  
+	  public int getFace() {
+			 return face;
+	  }
+	  
 }

@@ -8,11 +8,11 @@ public class Edge {
 	  
 	  private Vert start;//origin
 	  private Vert end;
-	  public Edge twin;
+	  private Edge twin;
 	  private Edge prev;
 	  private Edge next;
 	  
-	  public int face;//the face that the edge bounds
+	  private int face;//the face that the edge bounds
 	  
 	  Edge(String name){
 			this.name = name;
@@ -26,12 +26,12 @@ public class Edge {
 			 return start;
 	  }
 	  
-	  public Vert getEnd() {
-			 return end;
-	  }
-	  
 	  public void setStart(Vert start) {
 			 this.start = start;
+	  }
+	  
+	  public Vert getEnd() {
+			 return end;
 	  }
 	  
 	  public void setEnd(Vert end) {
@@ -46,6 +46,7 @@ public class Edge {
 			 this.prev = prev;
 	  }
 	  
+	  
 	  public Edge getNext() {
 			 return next;
 	  }
@@ -54,16 +55,20 @@ public class Edge {
 			 this.next = next;
 	  }
 	  
-	  public void setEndPoint(Vert a) {
-			 end = a;
+	  public void setTwin(Edge twin) {
+			 this.twin = twin;
 	  }
 	  
-	  public void setStartPoint(Vert b) {
-			 start = b;
+	  public Edge getTwin() {
+			 return twin;
 	  }
 	  
-	  public String getFace() {
-			 return "f" + face;
+	  public void setFace(int face) {
+			 this.face = face;
+	  }
+	  
+	  public int getFace() {
+			 return face;
 	  }
     
   }
