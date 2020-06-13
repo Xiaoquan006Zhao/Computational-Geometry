@@ -11,7 +11,6 @@ import java.util.*;
  */
 
 public class JavisMarch {
-    
     private ArrayList<point> points = new ArrayList<point>(); //should be sorted in constructor.
     private Stack<point> ch = new Stack<point>();
 	  
