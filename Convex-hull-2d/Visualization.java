@@ -14,7 +14,7 @@ import javafx.scene.paint.*;
  */
 
 @SuppressWarnings("restriction")
-public class Visualization extends Application { 
+public class Visualization extends Application {
 	private static ArrayList<point> data = null; //points of CH that need to be displayed.
 	private static ArrayList<point> points = null;
 	
