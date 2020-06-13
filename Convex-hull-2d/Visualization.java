@@ -15,10 +15,10 @@ import javafx.scene.paint.*;
 
 @SuppressWarnings("restriction")
 public class Visualization extends Application {
-	private static ArrayList<point> data = null; //points of CH that need to be displayed.
-	private static ArrayList<point> points = null;
-	
-	// scene width and length
+    private static ArrayList<point> data = null; //points of CH that need to be displayed.
+    private static ArrayList<point> points = null;
+
+    // scene width and length
 	private static double width = 600; //default = 600
 	private static double length = 600; //default = 600
 	
