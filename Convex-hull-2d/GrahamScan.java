@@ -100,4 +100,12 @@ public class GrahamScan {
         //since after computeCH(), points field is modified. Copy again to restore infomation
         points = (ArrayList<point>)inputPoints.clone(); 
     }
+    
+    public Stack<point> getCH(){
+        return ch;
+    }
+    
+    public ArrayList<point> getPoints(){
+        return points;
+    }
 }

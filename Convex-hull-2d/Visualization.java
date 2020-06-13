@@ -1,5 +1,6 @@
 
-import java.util.ArrayList;
+import java.util.*;
+
 import javafx.application.*;
 import javafx.collections.*;
 import javafx.scene.*;
@@ -78,6 +79,13 @@ public class Visualization extends Application {
 	 public static void loadData(ArrayList<point> inputs) {
 		  data = offset(inputs);
 	 }
+	 
+	 public static void loadData(Stack<point> inputs) {
+	     ArrayList<point> holder = new ArrayList<point>();
+	     inputs.forEach((p) -> holder.add(p));
+	     
+         data = offset(holder);
+    }
 
 	 public static void loadPoints(ArrayList<point> inputs) {
 		  points = offset(inputs);
@@ -151,7 +159,8 @@ public class Visualization extends Application {
 		  input.add(new point(10, 8));
 		  input.add(new point(2, -2));
 
-		  GrahamScan ex = new GrahamScan(input);
+		  //GrahamScan ex = new GrahamScan(input);
+		  JarvisMarch ex = new JarvisMarch(input);
 
 		  Visualization.loadData(ex.getCH());
 		  Visualization.loadPoints(ex.getPoints());

@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 /**
@@ -10,7 +11,7 @@ import java.util.*;
  * Space Complexity: O (n).
  */
 
-public class JavisMarch {
+public class JarvisMarch {
     private ArrayList<point> points = new ArrayList<point>(); //should be sorted in constructor.
     private Stack<point> ch = new Stack<point>();
 	  
@@ -63,7 +64,7 @@ public class JavisMarch {
 
     //assuming the input points are all distinct.
     @SuppressWarnings("unchecked")
-    public  JavisMarch (ArrayList<point> inputPoints) throws Exception {
+    public  JarvisMarch (ArrayList<point> inputPoints) throws Exception {
         if(inputPoints.size() == 0)	
             throw new Exception("empty input");
 	        
@@ -83,5 +84,13 @@ public class JavisMarch {
         ch.remove(ch.size()-1);
         ch.add(0, initial);
         points = (ArrayList<point>)inputPoints.clone(); //deep copy of sorted input points; 
+    }
+    
+    public Stack<point> getCH(){
+        return ch;
+    }
+    
+    public ArrayList<point> getPoints(){
+        return points;
     }
 }
