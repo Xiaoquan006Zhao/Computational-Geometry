@@ -17,154 +17,153 @@ import javafx.scene.paint.*;
 
 @SuppressWarnings("restriction")
 public class Visualization extends Application {
-	 private static ArrayList<point> data = null; // points of CH that need to be displayed.
-	 private static ArrayList<point> points = null;
+    private static ArrayList<point> data = null; // points of CH that need to be displayed.
+    private static ArrayList<point> points = null;
 
-	 // scene width and length
-	 private static double width = 600; // default = 600
-	 private static double length = 600; // default = 600
+    // scene width and length
+    private static double width = 600; // default = 600
+    private static double length = 600; // default = 600
 
-	 private static ArrayList<point> offset(ArrayList<point> inputs) {
-		  double xmax = inputs.get(0).x;
-		  double ymax = inputs.get(0).y;
-		  double xmin = inputs.get(0).x;
-		  double ymin = inputs.get(0).y;
+    private static ArrayList<point> offset(ArrayList<point> inputs) {
+        double xmax = inputs.get(0).x;
+        double ymax = inputs.get(0).y;
+        double xmin = inputs.get(0).x;
+        double ymin = inputs.get(0).y;
 
-		  for (int i = 1; i < inputs.size(); i++) {
-				point p = inputs.get(i);
+        for (int i = 1; i < inputs.size(); i++) {
+            point p = inputs.get(i);
 
-				if (p.x > xmax)
-					 xmax = p.x;
-				else if (p.x < xmin)
-					 xmin = p.x;
+            if (p.x > xmax)
+                xmax = p.x;
+            else if (p.x < xmin)
+                xmin = p.x;
 
-				if (p.y > ymax)
-					 ymax = p.y;
-				else if (p.y < ymin)
-					 ymin = p.y;
-		  }
+            if (p.y > ymax)
+                ymax = p.y;
+            else if (p.y < ymin)
+                ymin = p.y;
+        }
 
-		  point center = new point((xmax + xmin) / 2, (ymax + ymin) / 2);
-		  System.out.println(center.x + " ," + center.y);
-		  ArrayList<point> adjusted = new ArrayList<point>();
+        point center = new point((xmax + xmin) / 2, (ymax + ymin) / 2);
+        System.out.println(center.x + " ," + center.y);
+        ArrayList<point> adjusted = new ArrayList<point>();
 
-		  for (int i = 0; i < inputs.size(); i++) {
-				double newX = 0;
-				double newY = 0;
-				double oldX = inputs.get(i).x;
-				double oldY = inputs.get(i).y;
+        for (int i = 0; i < inputs.size(); i++) {
+            double newX = 0;
+            double newY = 0;
+            double oldX = inputs.get(i).x;
+            double oldY = inputs.get(i).y;
 
-				newX = (width / 2 * 9 / 10) * Math.abs((oldX - center.x) / (xmax - center.x));
-				newY = (length / 2 * 9 / 10) * Math.abs((oldY - center.y) / (ymax - center.y));
+            newX = (width / 2 * 9 / 10) * Math.abs((oldX - center.x) / (xmax - center.x));
+            newY = (length / 2 * 9 / 10) * Math.abs((oldY - center.y) / (ymax - center.y));
 
-				newX = Double.isNaN(newX) ? 0 : newX;
-				newY = Double.isNaN(newY) ? 0 : newY;
+            newX = Double.isNaN(newX) ? 0 : newX;
+            newY = Double.isNaN(newY) ? 0 : newY;
 
-				newX = (oldX < center.x) ? -newX : newX;
-				newY = (oldY < center.y) ? -newY : newY;
+            newX = (oldX < center.x) ? -newX : newX;
+            newY = (oldY < center.y) ? -newY : newY;
 
-				newX += width / 2;
-				newY += length / 2;
+            newX += width / 2;
+            newY += length / 2;
 
-				newY = length - newY;
+            newY = length - newY;
 
-				System.out.println(newX);
-				System.out.println(newY);
-				adjusted.add(new point(newX, newY));
-		  }
+            System.out.println(newX);
+            System.out.println(newY);
+            adjusted.add(new point(newX, newY));
+        }
 
-		  return adjusted;
-	 }
-
-	 public static void loadData(ArrayList<point> inputs) {
-		  data = offset(inputs);
-	 }
-	 
-	 public static void loadData(Stack<point> inputs) {
-	     ArrayList<point> holder = new ArrayList<point>();
-	     inputs.forEach((p) -> holder.add(p));
-	     
-         data = offset(holder);
+        return adjusted;
     }
 
-	 public static void loadPoints(ArrayList<point> inputs) {
-		  points = offset(inputs);
-	 }
+    public static void loadData(ArrayList<point> inputs) {
+        data = offset(inputs);
+    }
 
-	 public static void setWidth(double width) {
-		  Visualization.width = width;
-		  data = offset(data);
-	 }
+    public static void loadData(Stack<point> inputs) {
+        ArrayList<point> holder = new ArrayList<point>();
+        inputs.forEach((p) -> holder.add(p));
 
-	 public static void setLength(double length) {
-		  Visualization.length = length;
-		  data = offset(data);
-	 }
+        data = offset(holder);
+    }
 
-	 private void setPos(Circle c, point start) {
-		  c.setCenterX(start.x);
-		  c.setCenterY(start.y);
-		  c.setRadius(3);
-	 }
+    public static void loadPoints(ArrayList<point> inputs) {
+        points = offset(inputs);
+    }
 
-	 @Override
-	 @SuppressWarnings({ "rawtypes", "unchecked" })
-	 public void start(Stage stage) {
-		  Group root = new Group();
-		  ObservableList list = root.getChildren();
+    public static void setWidth(double width) {
+        Visualization.width = width;
+        data = offset(data);
+    }
 
-		  point start = data.get(0);
+    public static void setLength(double length) {
+        Visualization.length = length;
+        data = offset(data);
+    }
 
-		  for (int i = 0; i < points.size(); i++) {
-				Circle c = new Circle();
-				Color color = new Color(Math.random(), Math.random(), Math.random(), 1.0);
-				c.setFill(color);
-				setPos(c, points.get(i));
-				list.add(c);
-		  }
+    private void setPos(Circle c, point start) {
+        c.setCenterX(start.x);
+        c.setCenterY(start.y);
+        c.setRadius(3);
+    }
 
-		  for (int i = 1; i < data.size(); i++) {
-				point end = data.get(i);
-				Line line = new Line();
-				line.setStartX(start.x);
-				line.setStartY(start.y);
-				line.setEndX(end.x);
-				line.setEndY(end.y);
-				list.add(line);
-				start = end;
-		  }
+    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public void start(Stage stage) {
+        Group root = new Group();
+        ObservableList list = root.getChildren();
 
-		  point end = data.get(0);
-		  Line line = new Line();
-		  line.setStartX(start.x);
-		  line.setStartY(start.y);
-		  line.setEndX(end.x);
-		  line.setEndY(end.y);
-		  list.add(line);
+        point start = data.get(0);
 
-		  Scene scene = new Scene(root, width, length);
-		  stage.setTitle("Convex hull visualization");
-		  stage.setScene(scene);
-		  stage.show();
-	 }
+        for (int i = 0; i < points.size(); i++) {
+            Circle c = new Circle();
+            Color color = new Color(Math.random(), Math.random(), Math.random(), 1.0);
+            c.setFill(color);
+            setPos(c, points.get(i));
+            list.add(c);
+        }
 
-	 public static void main(String args[]) throws Exception {
-		  ArrayList<point> input = new ArrayList<point>();
+        for (int i = 1; i < data.size(); i++) {
+            point end = data.get(i);
+            Line line = new Line();
+            line.setStartX(start.x);
+            line.setStartY(start.y);
+            line.setEndX(end.x);
+            line.setEndY(end.y);
+            list.add(line);
+            start = end;
+        }
 
-		  input.add(new point(0, 0));
-		  input.add(new point(2, 2));
-		  input.add(new point(0, 1));
-		  input.add(new point(-2, 2));
-		  input.add(new point(0, -1));
-		  input.add(new point(10, 8));
-		  input.add(new point(2, -2));
+        point end = data.get(0);
+        Line line = new Line();
+        line.setStartX(start.x);
+        line.setStartY(start.y);
+        line.setEndX(end.x);
+        line.setEndY(end.y);
+        list.add(line);
 
-		  //GrahamScan ex = new GrahamScan(input);
-		  JarvisMarch ex = new JarvisMarch(input);
+        Scene scene = new Scene(root, width, length);
+        stage.setTitle("Convex hull visualization");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-		  Visualization.loadData(ex.getCH());
-		  Visualization.loadPoints(ex.getPoints());
-		  Visualization.launch();
-	 }
+    public static void main(String args[]) throws Exception {
+        ArrayList<point> input = new ArrayList<point>();
+
+        input.add(new point(0, 0));
+        input.add(new point(2, 2));
+        input.add(new point(0, 1));
+        input.add(new point(-2, 2));
+        input.add(new point(0, -1));
+        input.add(new point(10, 8));
+        input.add(new point(2, -2));
+
+        // GrahamScan ex = new GrahamScan(input);
+        JarvisMarch ex = new JarvisMarch(input);
+
+        Visualization.loadData(ex.getCH());
+        Visualization.loadPoints(ex.getPoints());
+        Visualization.launch();
+    }
 }
-
