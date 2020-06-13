@@ -99,7 +99,5 @@ public class GrahamScan {
         computeCH();
         //since after computeCH(), points field is modified. Copy again to restore infomation
         points = (ArrayList<point>)inputPoints.clone(); 
-        
     }
-    
 }
