@@ -12,6 +12,12 @@ public class Vert extends point {
         this.name = name;
         incidentEdge = null;
     }
+    
+    Vert(String name, double x, double y, Edge e) {
+        super(x, y);
+        this.name = name;
+        incidentEdge = e;
+    }
 
     public Edge getIncident() {
         return incidentEdge;
