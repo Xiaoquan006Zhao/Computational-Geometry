@@ -5,7 +5,7 @@
 
 public class Vert extends point {
     public final String name;
-    private Edge incidentEdge;
+    private Edge incidentEdge; // and edge that has "this" as start/origin
 
     Vert(String name, double x, double y) {
         super(x, y);
