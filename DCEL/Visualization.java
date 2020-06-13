@@ -11,7 +11,6 @@ import javafx.scene.text.Text;
 /***
  * Using javafx to display the convex hull after calculation using either implementation.
  * One example is given below in main method.
- * loadData and loadPoints must be used. Data is the ch, and points are points given to calculate the ch.
  */
 
 @SuppressWarnings("restriction")
@@ -26,14 +25,14 @@ public class Visualization extends Application {
 	private static double width = 600; //default = 600
 	private static double length = 600; //default = 600
 	
+    // properties of the input decl
 	static double xmax;
 	static double ymax;
 	static double xmin;
-	static double ymin;
-	
+	static double ymin;	
 	static point center;
 	
-	//initialize xmax, ymax, xmin, ymin from given inputs: verts
+	// initialize xmax, ymax, xmin, ymin from given inputs: verts
 	private static void calculateProperties() {
 		  xmax = verts.get(0).x;
 		  ymax = verts.get(0).y;
@@ -58,7 +57,8 @@ public class Visualization extends Application {
 		  System.out.println("center: " + center.x + " ," + center.y);
 	}
 	
-	//Synchronize input's coord with the display coord
+	// Synchronize input's coord with the view window coordinates.
+    // the y coordinate is reversed. (keep this in mind if you want to modify the code).
 	private static Vert offset(Vert p) {
 		  double newX = 0;
 		  double newY = 0;
@@ -81,12 +81,14 @@ public class Visualization extends Application {
 		  return new Vert(p.name, newX, newY);
 	}
 	
+    // helper method used in loadVert to update coordinate.
 	private static void offsetVert(ArrayList<Vert> inputs) {
 		  for(int i = 0; i < inputs.size(); i++) { 
 				 inputs.set(i, offset(inputs.get(i)));
 		  }
 	}
 	
+    // helper method used in loadEdge to update coordinates.
 	private static void offsetEdge(ArrayList<Edge> inputs) {
 		  for(int i = 0; i < inputs.size(); i++) {
 				 Edge old = inputs.get(i);
@@ -96,17 +98,21 @@ public class Visualization extends Application {
 		  }
 	}
 	
+    // should not be called independently. But one could
 	public static void reload() {
 		  offsetVert(verts);
 		  offsetEdge(edges);
 	}
 	
+    // load a dcel element.
 	public static void loadDCEL(DCEL dcel) throws Exception {
 		  loadVert(dcel.getVert());
 		  loadEdge(dcel.getEdge());
 		  loadFace(dcel.getFace());
 	}
 	
+    // helper method for loadDCEL(DCEL dcel) and reload(). Also can be called independently.
+    // load vertices data and updates the coordinates of vertices according to the view window.
 	public static void loadVert(ArrayList<Vert> inputs) throws Exception {
 		  if(inputs.size() == 0)
 				 throw new Exception("empty input: Vert");
@@ -116,6 +122,8 @@ public class Visualization extends Application {
 		  offsetVert(verts);
 	}
 	
+    // helper method for loadDCEL(DCEL dcel) and reload(). Also can be called independently.
+    // load edges data and updates the coordinates of endpoints of edge according to the view window.
 	public static void loadEdge(ArrayList<Edge> inputs) throws Exception {
 		  if(inputs.size() == 0)
 				 throw new Exception("empty input: Edge");
@@ -124,6 +132,8 @@ public class Visualization extends Application {
 		  offsetEdge(edges);
 	}
 	
+    // helper method for loadDCEL(DCEL dcel). Also can be called independently.
+    // load faces data and initialize a color field for each face.
 	public static void loadFace(ArrayList<Face> inputs) throws Exception {
 		  if(inputs.size() == 0)
 				 throw new Exception("empty input: Face");
@@ -137,22 +147,26 @@ public class Visualization extends Application {
 		  }
 	}
 	
+    // change the width of the view window. Default is 600.
 	public static void setWidth(double width) {
 		  Visualization.width = width;
 		  reload();
 	}
 	
+    // change the length of the view window. Default is 600.
 	public static void setLength(double length) {
 		  Visualization.length = length;
 		  reload();
 	}
 	
+    // helper method to set coordinate of c to start
 	private void setPos(Circle c, Vert start) {
 		  c.setCenterX(start.x);
 		  c.setCenterY(start.y);
 		  c.setRadius(3);
 	}
 	
+    // helper method to set coordinate of t to start
 	private void setPos(Text t, Vert start) {
 		  t.setX(start.x);
 		  t.setY(start.y);
@@ -165,7 +179,7 @@ public class Visualization extends Application {
 		  Group root = new Group(); 
         ObservableList list = root.getChildren(); 
         
-		  //rendering edges
+		  // rendering edges
 		  for (int i = 0; i < edges.size(); i++) {
 				 Edge cur = edges.get(i);
 				 Vert start = cur.getStart();
@@ -180,7 +194,7 @@ public class Visualization extends Application {
 
 		  }
 		  
-        //rendering vertices
+        // rendering vertices
 		  for (int i = 0; i < verts.size(); i++) {
 				 Circle c = new Circle();
 				 Color color = new Color(Math.random(), Math.random(), Math.random(), 1.0);
