@@ -21,6 +21,14 @@ public class Edge {
         prev = null;
         next = null;
     }
+    
+    Edge(String name, Vert start, Vert end) {
+        this.name = name;
+        this.start = start;
+        this.end  = end;
+        prev = null;
+        next = null;
+    }
 
     public Vert getStart() {
         return start;
