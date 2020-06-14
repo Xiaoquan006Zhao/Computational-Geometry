@@ -14,7 +14,7 @@ public class Edge {
 
     private int face;// the face that the edge bounds
 
-    Edge(String name) {
+    public Edge(String name) {
         this.name = name;
         start = null;
         end = null;
@@ -22,7 +22,7 @@ public class Edge {
         next = null;
     }
     
-    Edge(String name, Vert start, Vert end) {
+    public Edge(String name, Vert start, Vert end) {
         this.name = name;
         this.start = start;
         this.end  = end;
